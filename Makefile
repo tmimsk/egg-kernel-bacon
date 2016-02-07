@@ -369,7 +369,7 @@ LINUXINCLUDE    := -I$(srctree)/arch/$(hdr-arch)/include \
 KBUILD_CPPFLAGS := -D__KERNEL__
 
 # YoshiShaPow's Optimizations
-YOSHI_FLAGS	:= -pipe -munaligned-acces -mfloat-abi=softfp -mfpu=neon-vfpv4
+YOSHI_FLAGS	:= -pipe -munaligned-access -mfloat-abi=softfp -mfpu=neon-vfpv4
 YOSHI_FLAGS	+= -Wno-unused -Wno-maybe-uninitialized
 YOSHI_FLAGS	+= --param l1-cache-size=64 --param l1-cache-line-size=64 --param l2-cache-size=2048
 
