@@ -168,13 +168,6 @@ static void __ref asmp_late_resume(struct early_suspend *h)
 	pr_info(ASMP_TAG"resumed\n");
 }
 
-static struct early_suspend __refdata asmp_early_suspend_handler = {
-	.level = EARLY_SUSPEND_LEVEL_BLANK_SCREEN,
-	.suspend = asmp_early_suspend,
-	.resume = asmp_late_resume,
-};
-
-
 static int __cpuinit set_enabled(const char *val, const struct kernel_param *kp) {
 	int ret;
 	unsigned int cpu;
