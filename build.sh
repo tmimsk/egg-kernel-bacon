@@ -20,6 +20,7 @@ THREAD="-j2"
 KERNEL="zImage"
 DTBIMAGE="dtb"
 DEFCONFIG="cyanogenmod_bacon_defconfig"
+DEVICE="bacon"
 
 # Kernel Details
 VARIANT=$(date +"%Y%m%d")
@@ -31,8 +32,8 @@ export CROSS_COMPILE=${HOME}/secret/chamber/cortex_a15/bin/arm-eabi-
 KERNEL_DIR="${HOME}/secret/one-cm"
 ANYKERNEL_DIR="${HOME}/secret/chamber/anykernel"
 PATCH_DIR="${HOME}/secret/chamber/anykernel/patch"
-ZIP_MOVE_STABLE="${HOME}/secret/out/stable"
-ZIP_MOVE_NIGHTLY="${HOME}/secret/out/nightly"
+ZIP_MOVE_STABLE="${HOME}/secret/out/$DEVICE/stable"
+ZIP_MOVE_NIGHTLY="${HOME}/secret/out/$DEVICE/nightly"
 ZIMAGE_DIR="$KERNEL_DIR/arch/arm/boot"
 
 # Functions
@@ -63,12 +64,12 @@ function make_zip {
 		cd $ANYKERNEL_DIR
         if [ ! -z $MODE ]; then
             if [ "$MODE" == "r" ]; then
-	            zip -r9 egg-cm-13.0-stable-$VARIANT.zip *
-	            mv egg-cm-13.0-stable-$VARIANT.zip $ZIP_MOVE_STABLE
+	            zip -r9 egg-cm-13.0-$DEVICE-stable-$VARIANT.zip *
+	            mv egg-cm-13.0-$DEVICE-stable-$VARIANT.zip $ZIP_MOVE_STABLE
             fi
 		else
-		    zip -r9 egg-cm-13.0-nightly-$VARIANT.zip *
-		    mv egg-cm-13.0-nightly-$VARIANT.zip $ZIP_MOVE_NIGHTLY
+		    zip -r9 egg-cm-13.0-$DEVICE-nightly-$VARIANT.zip *
+		    mv egg-cm-13.0-$DEVICE-nightly-$VARIANT.zip $ZIP_MOVE_NIGHTLY
 		fi
 		cd $KERNEL_DIR
 }
