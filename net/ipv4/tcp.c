@@ -3295,7 +3295,7 @@ int tcp_abort(struct sock *sk, int err)
 	return 0;
 }
 EXPORT_SYMBOL_GPL(tcp_abort);
- 
+
 extern struct tcp_congestion_ops tcp_reno;
 
 static __initdata unsigned long thash_entries;

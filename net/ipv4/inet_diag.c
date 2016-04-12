@@ -280,7 +280,7 @@ static int sk_diag_fill(struct sock *sk, struct sk_buff *skb,
 
 struct sock *inet_diag_find_one_icsk(struct net *net,
 				     struct inet_hashinfo *hashinfo,
-				     struct inet_diag_req_v2 *req) 
+				     struct inet_diag_req_v2 *req)
 {
 	struct sock *sk;
 
@@ -302,7 +302,7 @@ struct sock *inet_diag_find_one_icsk(struct net *net,
 					  req->id.idiag_dport,
 					  (struct in6_addr *)req->id.idiag_src,
 					  req->id.idiag_sport,
-					  req->id.idiag_if); 
+					  req->id.idiag_if);
 	}
 #endif
 	else {
@@ -310,7 +310,7 @@ struct sock *inet_diag_find_one_icsk(struct net *net,
 	}
 
 	if (!sk)
-		return ERR_PTR(-ENOENT); 
+		return ERR_PTR(-ENOENT);
 
 	if (sock_diag_check_cookie(sk, req->id.idiag_cookie)) {
 		if (sk->sk_state == TCP_TIME_WAIT)
@@ -336,7 +336,7 @@ int inet_diag_dump_one_icsk(struct inet_hashinfo *hashinfo,
 
 	sk = inet_diag_find_one_icsk(net, hashinfo, req);
 	if (IS_ERR(sk))
-		return PTR_ERR(sk); 
+		return PTR_ERR(sk);
 
 	err = -ENOMEM;
 	rep = alloc_skb(NLMSG_SPACE((sizeof(struct inet_diag_msg) +
@@ -385,7 +385,7 @@ static int inet_diag_cmd_exact(int cmd, struct sk_buff *in_skb,
 	else if (cmd == SOCK_DESTROY_BACKPORT && handler->destroy)
 		err = handler->destroy(in_skb, req);
 	else
-		err = -EOPNOTSUPP; 
+		err = -EOPNOTSUPP;
 	inet_diag_unlock_handler(handler);
 
 	return err;
@@ -1118,10 +1118,10 @@ static int inet_diag_handler_cmd(struct sk_buff *skb, struct nlmsghdr *h)
 		return -EINVAL;
 
 	if (h->nlmsg_type == SOCK_DIAG_BY_FAMILY &&
-	    h->nlmsg_flags & NLM_F_DUMP) { 
-			if (nlmsg_attrlen(h, hdrlen)) {
-				struct nlattr *attr;
-				attr = nlmsg_find_attr(h, hdrlen,
+	    h->nlmsg_flags & NLM_F_DUMP) {
+		if (nlmsg_attrlen(h, hdrlen)) {
+			struct nlattr *attr;
+			attr = nlmsg_find_attr(h, hdrlen,
 					       INET_DIAG_REQ_BYTECODE);
 			if (attr == NULL ||
 			    nla_len(attr) < sizeof(struct inet_diag_bc_op) ||
