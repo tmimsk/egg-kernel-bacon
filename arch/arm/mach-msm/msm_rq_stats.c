@@ -200,7 +200,7 @@ void enable_rq_load_calc(bool on)
 	if (on != load_stats_enabled){
 		load_stats_enabled = on;
 
-		pr_info("Enable rq_stats load calculation %d\n", oad_stats_enabled);
+		pr_info("Enable rq_stats load calculation %d\n", load_stats_enabled);
 		if (load_stats_enabled) {
 			// clear data
 			for_each_possible_cpu(cpu) {
